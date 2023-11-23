@@ -1,0 +1,27 @@
+.parent {
+  height: 40px;
+  width: calc(100% - 31px);
+
+  padding: 15px;
+
+  border-bottom: 1px solid #404249;
+  border-left: 1px solid #404249;
+  background-color: #202125;
+}
+
+.text {
+  height: 100%;
+  margin-left: 15px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  color: #B1B5C5;
+
+  font-family: Open SansSerif, sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}

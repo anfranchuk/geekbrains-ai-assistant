@@ -1,0 +1,28 @@
+.parent {
+  height: 100%;
+  width: 70px;
+
+  position: absolute;
+  bottom: 0;
+  z-index: 1002;
+
+  border-right: 1px solid #404249;
+  background-color: #202125;
+}
+
+.bricks {
+  width: 100%;
+  margin-bottom: 10px;
+
+  position: absolute;
+  bottom: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.brick {
+  margin-top: 5px;
+}
