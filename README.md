@@ -62,7 +62,7 @@ myproject/              # Корневая директория проекта
 Таким образом, наш интеллектуальный ассистент не только упрощает процесс подготовки материалов для лекций, но и делает эти материалы более доступными для студентов.
 
 ### Функциональная модель решения 1
-<img width="600" height="1200" alt="func_scheme" src="https://github.com/anfranchuk/geekbrains-ai-assistant/blob/main/staticfiles/cplogo.jpg"> 
+<img width="100" height="50" alt="func_scheme" src="https://github.com/anfranchuk/geekbrains-ai-assistant/blob/main/staticfiles/cplogo.jpg"> 
 
 <p>Пример обработки </p>
 
