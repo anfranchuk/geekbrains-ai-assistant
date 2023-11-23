@@ -1,11 +1,6 @@
 # geekbrains-ai-assistant
-```tags
-#Speech
-#Recognition
-#Content Generation
-#Educational Technology
-#ML
-```
+
+#Speec #Recognition #Content Generation #Educational Technology #ML
 
 | Организатор  | Кейсодержатель |
 | ------------- | ------------- |
