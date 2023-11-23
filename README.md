@@ -68,7 +68,8 @@ myproject/              # Корневая директория проекта
 
 | Вход (видео)  | Транскрибация |
 | ------------- | ------------- |
-| [![geekbrains](https://asciinema.org/a/113463.png)](https://www.youtube.com/watch?v=tPhx4kUM8Vg)  | Тест тест тест |
+| [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/tPhx4kUM8Vg/0.jpg)](https://www.youtube.com/watch?v=tPhx4kUM8Vg)  | Тест тест тест |
+
 
 
 ## <a name="startup">Запуск</a>
