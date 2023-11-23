@@ -1,7 +1,7 @@
 venv
 secrets.txt
 train_data
-
+test_data
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
