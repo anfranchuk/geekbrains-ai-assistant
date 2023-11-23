@@ -199,7 +199,7 @@ export default () => {
 	};
 
 	return (
-		<div style={{ backgroundColor: '#202125', height: '100%', width: 'calc(100% - 70px)', marginLeft: 70 }}>
+		<div style={{ backgroundColor: '#1f222e', height: '100%', width: 'calc(100% - 70px)', marginLeft: 70 }}>
 			<Header />
 
 			<div style={{width: 'calc(100% - 0px)', height: 'calc(100% - 80px)', display: 'flex'}}>
@@ -211,9 +211,9 @@ export default () => {
 
 							<div className={styles.App}>
 								<form onSubmit={handleFormSubmit}>
-									<input ref={nameRef} type="text" name="name" placeholder="Your Name" required />
+									<input ref={nameRef} type="text" name="name" placeholder="Название" required />
 									<input ref={audioRef} type="file" name="audio" accept="audio/*" required />
-									<input type="submit" value="Submit" />
+									<input type="submit" value="Отправить файл" />
 								</form>
 							</div>
 
@@ -226,7 +226,7 @@ export default () => {
 								onStop={handleStop}
 								onData={handleData}
 								strokeColor="#FFFFFF"
-								backgroundColor="#202125"
+								backgroundColor="#1f222e"
 							/>
 							<button onClick={handleStart}>Start Recording</button>
 							<button onClick={handleStop}>Stop Recording</button>

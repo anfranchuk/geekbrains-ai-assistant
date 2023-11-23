@@ -1,6 +1,8 @@
 .App {
   text-align: center;
   padding: 1em;
+
+  font-family: "Onest", sans-serif;
 }
 
 .App form {
@@ -12,19 +14,42 @@
 .App form input[type="text"],
 .App form input[type="file"] {
   padding: 0.5em;
+
+  //background-color: #f2f2f2;
+  color: white;
 }
 
 .App form input[type="submit"] {
-  background-color: #4CAF50;
-  color: white;
-  padding: 0.5em;
+  //background-color: white;
+  //color: #1f222e;
+  //padding: 0.5em;
+  //border: none;
+  //cursor: pointer;
+
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: white;
+  color: #1f222e;
   border: none;
+  border-radius: 10px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
+  font-family: "Onest", sans-serif;
+
+  &:hover {
+    background-color: rgba(31, 34, 46, 0.05);
+  }
+
+  &:not(:last-child) {
+    margin-right: 10px;
+  }
+
 }
 
-.App form input[type="submit"]:hover {
-  background-color: #45a049;
-}
+//.App form input[type="submit"]:hover {
+//  background-color: white;
+//}
 
 
 .ReactMic {
@@ -35,7 +60,7 @@
   //width: 300px;
   //height: 300px;
   //border-radius: 50%;
-  //background-color: #202125;
+  //background-color: #1f222e;
   //box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   margin-bottom: 20px;
 
@@ -43,15 +68,16 @@
     margin: 10px;
     padding: 10px 20px;
     font-size: 16px;
-    background-color: #4CAF50;
-    color: white;
+    background-color: white;
+    color: #1f222e;
     border: none;
-    border-radius: 4px;
+    border-radius: 10px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    font-family: "Onest", sans-serif;
 
     &:hover {
-      background-color: #45a049;
+      background-color: white;
     }
 
     &:not(:last-child) {
