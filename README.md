@@ -88,8 +88,8 @@ myproject/              # Корневая директория проекта
 
 | Номер этапа  | Описание  | Выходные данные | Выходные данные |
 | ------------- | ------------- | ------------- | ------------- |
-| 1.1 | Получение звука из видео | [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/tPhx4kUM8Vg/0.jpg)](https://www.youtube.com/watch?v=tPhx4kUM8Vg)  | <audi.mp3> |
-| 1.2 | Получение сущностей из видео | [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/tPhx4kUM8Vg/0.jpg)](https://www.youtube.com/watch?v=tPhx4kUM8Vg)  | Всем привет! С Вами geekbrains - гиганты в мире обучения! |
+| 1.1 | Получение звука из видео | [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/tPhx4kUM8Vg/0.jpg)](https://www.youtube.com/watch?v=tPhx4kUM8Vg)  | <audio ref='themeSong' src="https://github.com/anfranchuk/geekbrains-ai-assistant/blob/main/staticfiles/test_data.mp3" autoPlay loop></audio> |
+| 1.2 | Получение сущностей из видео | <audio.mp3>  | Всем привет! С Вами geekbrains - гиганты в мире обучения! |
 | 2 | Перевод видео в текст | [![IMAGE ALT TEXT HERE](https://img.youtube.com/vi/tPhx4kUM8Vg/0.jpg)](https://www.youtube.com/watch?v=tPhx4kUM8Vg)  | Всем привет! С Вами geekbrains - гиганты в мире обучения! |
 
 
