@@ -1,0 +1,54 @@
+version: "3.11"
+
+services:
+  redis:
+    image: redis
+    restart: always
+
+  backend:
+    restart: always
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    ports:
+      - "8777:8777"
+    volumes:
+      - ./backend/core/media-api:/backend/core/media-api
+      - ./backend/core/rvn_db.sqlite3:/backend/core/rvn_db.sqlite3
+    command: bash -c "cd core && daphne -b 0.0.0.0 -p 8777 core.asgi:application -v2"
+
+  worker:
+    restart: always
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    volumes:
+      - ./backend/core/media-api:/backend/core/media-api
+    command: ["celery", "--workdir=./core", "-A", "core", "worker"]
+    depends_on:
+      - backend
+
+  flower:
+    image: mher/flower
+    ports:
+      - "8778:5555"
+    volumes:
+      - ./worker_wait.sh:/worker_wait.sh
+    command: ["sh","/worker_wait.sh"]
+    depends_on:
+      - worker
+
+  nginx:
+    image: nginx
+    restart: always
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./django-static:/django-static
+      - ./backend/core/media-api:/media-api
+      - ./build:/build
+    depends_on:
+      - backend
+volumes:
+  grafana-storage:
