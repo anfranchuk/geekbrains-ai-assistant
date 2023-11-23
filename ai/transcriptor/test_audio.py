@@ -6,9 +6,9 @@ r = sr.Recognizer()
 
 
 # Convert audio file to WAV format
-input_file = 'audio1.mp3'
-output_file = 'audio1.wav'
-subprocess.call(['ffmpeg', '-i', input_file, output_file])
+#input_file = 'audio1.mp3'
+#output_file = 'audio1.wav'
+#subprocess.call(['ffmpeg', '-i', input_file, output_file])
 
 # Загружаем аудиофайл
 audio_file = 'audio1.wav'
