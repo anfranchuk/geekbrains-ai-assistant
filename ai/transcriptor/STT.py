@@ -1,10 +1,9 @@
 import whisper
 
-model_type_stt="./medium.pt"
-# # Load the Whisper model
-model = whisper.load_model(model_type_stt,  device='cpu')
-
-def transcribe_with_whisper(audio_file, model=model):
+def transcribe_with_whisper(audio_file):
+    model_type_stt = "medium"
+    # # Load the Whisper model
+    model = whisper.load_model(model_type_stt,  device='cpu')
     # Transcribe the audio
     return model.transcribe(audio_file)
 
@@ -15,9 +14,9 @@ def speech2text(audio_file):
         'text': data['text']
     }
 
-def main():
+"""def main():
     path_to_mp3 = './audio1.mp3'
     data = speech2text(path_to_mp3)
-    print(data)
+    print(data)"""
 
-main()
+#main()
