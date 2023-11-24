@@ -1,16 +1,20 @@
 from ai.lecture_notes.llama_predict import llama_promt
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+from fuzzywuzzy import fuzz
+
+from langdetect import detect
+from nltk.stem import WordNetLemmatizer
+from pymorphy2 import MorphAnalyzer
+import nltk
+
 from ai.transcriptor.Exctract_keywords import get_keywords, combined_stop_words
 from ai.transcriptor.STT import speech2text
-from gensim.models import KeyedVectors
-from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
+
+nltk.download('wordnet')
 
 model_name = "facebook/nllb-200-distilled-600M"
 model_t = AutoModelForSeq2SeqLM.from_pretrained(model_name)
 tokenizer = AutoTokenizer.from_pretrained(model_name)
-from gensim.models import Word2Vec
-
-
-word_vectors = KeyedVectors.load_word2vec_format('./GoogleNews-vectors-negative300.bin', binary=True)
 
 d_langs_t = {'Английский': 'eng_Latn',
              'Датский': 'dan_Latn',
@@ -27,29 +31,41 @@ d_langs_t = {'Английский': 'eng_Latn',
              # 'Японский': 'jpn_Jpan',
              }
 
+def lemmatize_word(word):
+    # Определяем язык слова
+    language = detect(word)
+
+    if language == "en":
+        lemmatizer = WordNetLemmatizer()
+        return lemmatizer.lemmatize(word)
+    elif language == "ru":
+        morph = MorphAnalyzer()
+        return morph.parse(word)[0].normal_form
+    else:
+        return word  # Если язык не определен или не поддерживается
 
 # Define a function to remove similar words
 def remove_similar_words(keywords):
+    import pymorphy2
+    morph = pymorphy2.MorphAnalyzer()
     unique_keywords = []
     for keyword in keywords:
         is_similar = False
         for unique_keyword in unique_keywords:
-            if word_vectors.similarity(keyword[0], unique_keyword[0]) > 0.8:
+            if fuzz.ratio(keyword[0], unique_keyword[0]) > 60:
                 is_similar = True
                 break
         if not is_similar:
-            unique_keywords.append(keyword)
+            #teg = morph.parse(keyword[0])[0]
+            unique_keywords.append((lemmatize_word(keyword[0]), keyword[1]))
     return unique_keywords
-
-
 def translator(text, target_language):
     inputs = tokenizer(text, return_tensors="pt")
     outputs = model_t.generate(**inputs, forced_bos_token_id=tokenizer.lang_code_to_id[target_language])
     return tokenizer.batch_decode(outputs, skip_special_tokens=True)
 
-def main():
+def sound_to_text(audio_file):
     lang = 'Русский'
-    audio_file = './audio1.mp3'
     conspect = speech2text(audio_file)
     """
     С тайм кодами разбивка + конспект лекции
@@ -73,7 +89,6 @@ def main():
     termins = remove_similar_words(termins)
     print(termins)
     """[('python', 0.4077), ('программирования', 0.31), ('разработчика', 0.2249)]"""
-
     out = []
     for x in termins:
         if len(x[0]) < 499:
@@ -83,5 +98,4 @@ def main():
     print(out)
     return out, conspect, termins
 
-
-main()
+sound_to_text('./python_term_example.mp3')
