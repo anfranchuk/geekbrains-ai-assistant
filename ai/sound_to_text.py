@@ -53,7 +53,7 @@ def remove_similar_words(keywords):
     for keyword in keywords:
         is_similar = False
         for unique_keyword in unique_keywords:
-            if fuzz.ratio(keyword[0], unique_keyword[0]) > 60:
+            if fuzz.ratio(keyword[0], unique_keyword[0]) > 70:
                 is_similar = True
                 break
         if not is_similar:
