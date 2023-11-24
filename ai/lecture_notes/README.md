@@ -13,3 +13,4 @@ ggmlv3.q4_K_M.gguf.bin
 ```
 ./main -m ./models/llama-2-7b-chat.ggmlv3.q4_K_M.gguf.bin -n 1024 -ngl 1 -p "Give me 5 things to do in NYC"
 ```
+https://openaipublic.azureedge.net/main/whisper/models/345ae4da62f9b3d59415adc60127b97c714f32e89e936602e85993674d08dcb1/medium.pt
