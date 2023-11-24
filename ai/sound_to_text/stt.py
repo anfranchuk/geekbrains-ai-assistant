@@ -2,11 +2,11 @@ import whisper
 
 model_type_stt="medium"
 # # Load the Whisper model
-model = whisper.load_model(model_type_stt)
+model = whisper.load_model(model_type_stt, device='cpu')
 
 def transcribe_with_whisper(audio_file, model=model):
     # Transcribe the audio
-    return model.transcribe(audio_file)
+    return model.transcribe(audio_file, fp16=False)
 
 def speech2text(audio_file):
     data = transcribe_with_whisper(audio_file)
@@ -16,7 +16,7 @@ def speech2text(audio_file):
     }
 
 def main():
-    path_to_mp3 = ''
+    path_to_mp3 = '/home/tommy/git-projects/geekbrains-ai-assistant/ai/python_term_example.mp3'
     data = speech2text(path_to_mp3)
     print(data)
 
