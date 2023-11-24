@@ -3,7 +3,7 @@ from transformers import pipeline
 nlp = pipeline("text-classification", model="bert-base-uncased")
 
 previous_text = "Python"
-new_text = "Python"
+new_text = "kjkhjkhjkhk"
 
 print(f"Предыдущее предложение: {previous_text}")
 print(f"Новое предложение: {new_text}")
