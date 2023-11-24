@@ -7,3 +7,4 @@ pip install git+https://github.com/openai/whisper.git
 
 uvicorn main:app --reload
 
+python -m uvicorn ai.server:app --reload 

@@ -9,6 +9,7 @@ import nltk
 
 from ai.transcriptor.Exctract_keywords import get_keywords, combined_stop_words
 from ai.transcriptor.STT import speech2text
+from ai.transcriptor.timecodes_and_full_text import timecodes_and_full_text
 
 nltk.download('wordnet')
 
@@ -66,7 +67,8 @@ def translator(text, target_language):
 
 def sound_to_text(audio_file):
     lang = 'Русский'
-    conspect = speech2text(audio_file)
+    conspect = timecodes_and_full_text(audio_file)
+    #conspect = speech2text(audio_file) # old
     """
     С тайм кодами разбивка + конспект лекции
     timecode_with_text': [[x['start'], x['end'], x['text']] for x in data['segments']],
@@ -98,4 +100,4 @@ def sound_to_text(audio_file):
     print(out)
     return out, conspect, termins
 
-sound_to_text('./python_term_example.mp3')
+#sound_to_text('./audio1.mp3')

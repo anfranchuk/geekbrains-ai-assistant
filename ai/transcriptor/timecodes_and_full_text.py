@@ -19,7 +19,7 @@ def split_audio(file_path, segment_length_ms):
     # Проверка, нужно ли разбивать аудио
     if duration_ms <= segment_length_ms:
         print("Аудиофайл меньше или равен заданной длительности сегмента. Разбиение не требуется.")
-        return
+        return False
 
     # Количество фрагментов
     segments_count = math.ceil(duration_ms / segment_length_ms)
@@ -36,6 +36,7 @@ def split_audio(file_path, segment_length_ms):
 
         # Сохранение сегмента в файл
         segment.export(f"./segments/segment_{i}.mp3", format="mp3")
+    return True
 
 def transcribe_with_whisper(audio_file, model=model):
     # Transcribe the audio
@@ -87,27 +88,29 @@ def clear_data(data):
             data_new['text'] += row[-1]
     return data_new
 
-def main(mp3_path):
+def timecodes_and_full_text(mp3_path):
     # 1. разбить файл на сегменты по 5 минутам (600000 миллисекунд)
-    split_audio(mp3_path, 300000)
+    if split_audio(mp3_path, 300000):
+        print('Аудиофайл разбит на сегменты')
+        # 2. Прокидываем разделенные аудиофайлы в whisper циклом
+        # full_text = ''
+        timecode_with_text = None
 
-    # 2. Прокидываем разделенные аудиофайлы в whisper циклом
-    # full_text = ''
-    timecode_with_text = None
+        for seg in Path('./segments').iterdir():
+            data = speech2text(str(seg))
+            # full_text += data['text']
+            if timecode_with_text is not None:
+                timecode_with_text.extend(data['timecode_with_text'])
+            else:
+                timecode_with_text = []
+                timecode_with_text.extend(data['timecode_with_text'])
 
-    for seg in Path('./segments').iterdir():
-        data = speech2text(str(seg))
-        # full_text += data['text']
-        if timecode_with_text is not None:
-            timecode_with_text.extend(data['timecode_with_text'])
-        else:
-            timecode_with_text = []
-            timecode_with_text.extend(data['timecode_with_text'])
+        # 3. Удаляю директорию с аудиофайлами
+        delete_directory_with_content('./segments')
 
-    # 3. Удаляю директорию с аудиофайлами
-    delete_directory_with_content('./segments')
+        # 4. Зачищаю полученный словарь с таймкодами от бреда и возращаю тот же словарь, но с очищенными таймкодами и полным текстом
+        return clear_data(timecode_with_text)
+    else:
+        print('Аудиофайл не разбит на сегменты')
+        return speech2text(mp3_path)
 
-    # 4. Зачищаю полученный словарь с таймкодами от бреда и возращаю тот же словарь, но с очищенными таймкодами и полным текстом
-    return clear_data(timecode_with_text)
-
-data = main('')

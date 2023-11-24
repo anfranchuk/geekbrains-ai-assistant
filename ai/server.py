@@ -1,4 +1,5 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, Request
+from ai.sound_to_text import sound_to_text
 
 app = FastAPI()
 
@@ -9,9 +10,6 @@ app = FastAPI(
 )
 
 @app.get("/")
-def read_root():
-    return {"Hello": "World"}
-
-@app.get("/items/{item_id}")
-def read_item(item_id: int, q: str = None):
-    return {"item_id": item_id, "q": q}
+def read_audio(request: Request):
+    #return {"audio":  sound_to_text(request)}
+    return {"audio":  request}
