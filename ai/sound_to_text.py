@@ -65,7 +65,7 @@ def main():
     """
     print(result)
     text = result['text']
-    data = get_keywords(text, stopwords=combined_stop_words, keyphrase_ngram_range=(1, 1), top_n=3)
+    data = get_keywords(text, stopwords=combined_stop_words, keyphrase_ngram_range=(1, 1), top_n=10)
     print(data)
     """[('python', 0.4077), ('программирования', 0.31), ('разработчика', 0.2249)]"""
 
