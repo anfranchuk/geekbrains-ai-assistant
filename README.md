@@ -111,4 +111,15 @@ https://github.com/anfranchuk/geekbrains-ai-assistant.git
 *Михаил Нуридинов    
 ## <a name="urls">Ссылки 🔗</a>
  
-- [ссылка на яндекс диск]( https://disk.yandex.ru/)   
+- [ссылка на яндекс диск]( https://disk.yandex.ru/)
+
+
+
+
+
+
+
+
+./convert-llama-ggml-to-gguf.py --eps 1e-5 -i ./models/llama-2-7b-chat.ggmlv3.q4_K_M.bin -o ./models/llama-2-7b-chat.
+ggmlv3.q4_K_M.gguf.bin
+
