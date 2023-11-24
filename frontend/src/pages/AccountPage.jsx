@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { useTheme } from '@mui/material/styles';
 import Box from '@mui/material/Box';
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
@@ -9,11 +8,11 @@ import backImage from '../assets/img_1.png';
 
 
 export default function AccountPage() {
-	const theme = useTheme();
 	const defUser = {
 		name: 'Имя  Фамилия',
 		role: 'Лектор'
 	};
+
 	return (
 		<Box
 			sx={{
@@ -40,6 +39,7 @@ export default function AccountPage() {
 					alt="Live from space album cover"
 				/>
 			</Card>
+
 		</Box>
 
 	);

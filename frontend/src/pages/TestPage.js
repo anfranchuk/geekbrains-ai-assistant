@@ -8,6 +8,10 @@ import TopLeftCard from '../components/TopLeftCard/TopLeftCard';
 import styles from './TestPage.module.scss';
 import {apiMainGet} from '../api/api';
 import { ReactMic } from 'react-mic';
+import Modal from '@mui/material/Modal';
+import Box from '@mui/material/Box';
+import MyCard from '../components/Modal/ModalContent';
+import * as React from 'react';
 
 const defEvent = {
 	'id': 1,
@@ -69,6 +73,10 @@ export default () => {
 	const [pageCounter, setPageCounter] = useState(0);
 	const [selected, setSelected] = useState(defEvent);
 	const [reloadPage, setReloadPage] = useState(false);
+	const [open, setOpen] = React.useState(false);
+	// const handleOpen = () => setOpen(true);
+	console.log(selected, isLoad, dataEvents, countRows);
+	const handleClose = () => setOpen(false);
 
 	const serverPath = '77.223.96.53';
 	// const localPath = window.location.host;
@@ -199,81 +207,100 @@ export default () => {
 	};
 
 	return (
-		<div style={{ backgroundColor: '#1f222e', height: '100%', width: 'calc(100% - 70px)', marginLeft: 70 }}>
-			<Header />
-
-			<div style={{width: 'calc(100% - 0px)', height: 'calc(100% - 80px)', display: 'flex'}}>
-				<ThemeProvider theme={darkTheme}>
-					<div style={{width: '65%', height: '100%', display: 'flex', flexDirection: 'column'}}>
-						<div style={{width: '100%', height: '55%', borderRight: '1px solid #404249'}}>
-							{/*<TopLeftCard row={selected}/>*/}
-
-
-							<div className={styles.App}>
-								<form onSubmit={handleFormSubmit}>
-									<input ref={nameRef} type="text" name="name" placeholder="Название" required />
-									<input ref={audioRef} type="file" name="audio" accept="audio/*" required />
-									<input type="submit" value="Отправить файл" />
-								</form>
-							</div>
-
-						</div>
-
-						<div className={styles.ReactMic} style={{width: '100%', height: '45%'}}>
-
-							<ReactMic
-								record={recordStart}
-								onStop={handleStop}
-								onData={handleData}
-								strokeColor="#FFFFFF"
-								backgroundColor="#1f222e"
-							/>
-							<button onClick={handleStart}>Start Recording</button>
-							<button onClick={handleStop}>Stop Recording</button>
-							<button onClick={handleSend}>Send Audio</button>
+		<div className={styles.page}>
+			<p>Название лекции</p>
+			<p></p>
+			{/*<div style={{width: 'calc(100% - 0px)', height: 'calc(100% - 80px)', display: 'flex'}}>*/}
+			{/*<ThemeProvider theme={darkTheme}>*/}
+			{/*<div style={{width: '65%', height: '100%', display: 'flex', flexDirection: 'column'}}>*/}
+			{/*<div style={{width: '100%', height: '55%', borderRight: '1px solid #404249'}}>*/}
+			{/*	/!*<TopLeftCard row={selected}/>*!/*/}
 
 
+			{/*	<div className={styles.App}>*/}
+			{/*		<form onSubmit={handleFormSubmit}>*/}
+			{/*			<input ref={nameRef} type="text" name="name" placeholder="Название" required />*/}
+			{/*			<input ref={audioRef} type="file" name="audio" accept="audio/*" required />*/}
+			{/*			<input type="submit" value="Отправить файл" />*/}
+			{/*		</form>*/}
+			{/*	</div>*/}
 
-							{recordedData && (
-								<div>
-									<audio controls src={URL.createObjectURL(recordedData)} />
-								</div>
-							)}
-							{/*<StyledDataGrid*/}
-							{/*	style={{color: '#B1B5C5', borderRight: 'none', borderRadius: 0}}*/}
-							{/*	rows={dataEvents}*/}
-							{/*	columns={columnsFull}*/}
-							{/*	loading={isLoad}*/}
-							{/*	paginationMode={'server'}*/}
-							{/*	rowCount={countRows}*/}
-							{/*	disableColumnFilter*/}
-							{/*	initialState={{*/}
-							{/*		pagination: {*/}
-							{/*			paginationModel: { pageSize: 10 },*/}
-							{/*		},*/}
-							{/*	}}*/}
-							{/*	pageSizeOptions={[10]}*/}
-							{/*	hideFooterSelectedRowCount={true}*/}
-							{/*	onRowClick={handleSelectRow}*/}
-							{/*	onPaginationModelChange={handleChangePage}*/}
-							{/*	localeText={ruRU.components.MuiDataGrid.defaultProps.localeText}*/}
-							{/*/>*/}
-						</div>
-					</div>
+			{/*</div>*/}
 
-					<div style={{width: '35%', height: '100%', display: 'flex', flexDirection: 'column'}}>
-						<div style={{width: '100%', height: '55%'}}>
-							{/*<TopRigthCard getLink={getLink} row={selected} setReloadPage={setReloadPage}/>*/}
-						</div>
+			{/*<div className={styles.ReactMic} style={{width: '100%', height: '45%'}}>*/}
 
-						<div style={{width: '100%', height: '45%'}}>
+			{/*<ReactMic*/}
+			{/*	record={recordStart}*/}
+			{/*	onStop={handleStop}*/}
+			{/*	onData={handleData}*/}
+			{/*	strokeColor="#FFFFFF"*/}
+			{/*	backgroundColor="#1f222e"*/}
+			{/*/>*/}
+			{/*<button onClick={handleStart}>Start Recording</button>*/}
+			{/*<button onClick={handleStop}>Stop Recording</button>*/}
+			{/*<button onClick={handleSend}>Send Audio</button>*/}
 
 
-							{/*<BottomRightCard getLink={getLink} number={selected.number}/>*/}
-						</div>
-					</div>
-				</ThemeProvider>
-			</div>
+
+			{/*{recordedData && (*/}
+			{/*	<div>*/}
+			{/*		<audio controls src={URL.createObjectURL(recordedData)} />*/}
+			{/*	</div>*/}
+			{/*)}*/}
+			{/*<StyledDataGrid*/}
+			{/*	style={{color: '#B1B5C5', borderRight: 'none', borderRadius: 0}}*/}
+			{/*	rows={dataEvents}*/}
+			{/*	columns={columnsFull}*/}
+			{/*	loading={isLoad}*/}
+			{/*	paginationMode={'server'}*/}
+			{/*	rowCount={countRows}*/}
+			{/*	disableColumnFilter*/}
+			{/*	initialState={{*/}
+			{/*		pagination: {*/}
+			{/*			paginationModel: { pageSize: 10 },*/}
+			{/*		},*/}
+			{/*	}}*/}
+			{/*	pageSizeOptions={[10]}*/}
+			{/*	hideFooterSelectedRowCount={true}*/}
+			{/*	onRowClick={handleSelectRow}*/}
+			{/*	onPaginationModelChange={handleChangePage}*/}
+			{/*	localeText={ruRU.components.MuiDataGrid.defaultProps.localeText}*/}
+			{/*/>*/}
+			{/*	</div>*/}
+			{/*</div>*/}
+
+			{/*<div style={{width: '35%', height: '100%', display: 'flex', flexDirection: 'column'}}>*/}
+			{/*	<div style={{width: '100%', height: '55%'}}>*/}
+			{/*		/!*<TopRigthCard getLink={getLink} row={selected} setReloadPage={setReloadPage}/>*!/*/}
+			{/*	</div>*/}
+
+			{/*	<div style={{width: '100%', height: '45%'}}>*/}
+
+
+			{/*		/!*<BottomRightCard getLink={getLink} number={selected.number}/>*!/*/}
+			{/*	</div>*/}
+			{/*</div>*/}
+			{/*</ThemeProvider>*/}
+			{/*</div>*/}
+			<Modal
+				open={open}
+				onClose={handleClose}
+			>
+				<Box
+					sx={{
+						position: 'absolute',
+						top: '50%',
+						left: '50%',
+						transform: 'translate(-50%, -50%)',
+						display: 'flex',
+						justifyContent: 'center',
+						margin: '50px 20px 0 20px', // Add a 20px margin on the right and left
+					}}
+				>
+					<MyCard handleClose={handleClose}/>
+				</Box>
+
+			</Modal>
 		</div>
 	);
 };

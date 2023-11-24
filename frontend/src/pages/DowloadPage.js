@@ -39,82 +39,39 @@ const schema = {
 						}
 					}
 				},
-
 				{
-					name: 'address_header',
-					prop: null,
-					meta: {
-						displayName: 'Address',
-						displayType: 'header',
-						displayProps: {
-							md: 12
-						}
-					}
-				},
-				{
-					name: 'street_address_1',
-					meta: {
-						displayName: 'Street Address',
-						displayType: 'text_field'
-					}
-				},
-				{
-					name: 'street_address_2',
-					meta: {
-						displayName: 'Street Address 2',
-						displayType: 'text_field'
-					}
-				},
-				{
-					name: 'state',
+					name: 'video',
 					meta: {
 						displayName: 'Аудио',
 						displayType: 'file',
 						displayProps: {
 							md: 6,
 							accept: 'audio/mp3',
-							fileFilter: (file) => {
-								const acceptedTypes = ['audio/mp3'];
-								const fileType = file.type;
-
-								return acceptedTypes.includes(fileType);
-							}
-						}
-					}
-				},
-
-				{
-					name: 'pinocde',
-					meta: {
-						displayName: 'Pincode',
-						displayType: 'text_field',
-						displayProps: {
-							md: 6
-						},
-						validation: {
-							required: true,
-							pattern: '^[1-9][0-9]{5}$',
-							patternDetail: {
-								errorMsg: 'Pincode is not valid'
-							}
 						}
 					}
 				},
 				{
-					name: 'country',
+					name: 'video',
 					meta: {
-						displayName: 'Country',
-						displayType: 'text_field',
-						value: 'INDIA',
-						isReadonly: true,
+						displayName: 'Видео',
+						displayType: 'file',
 						displayProps: {
-							md: 6
-						},
-						validation: {
-							required: true
+							md: 6,
+							accept: 'audio/mp4',
 						}
 					}
-				}
+				},
+				{
+					name: 'manual',
+					meta: {
+						displayName: 'Методичка',
+						displayType: 'file',
+						displayProps: {
+							md: 6,
+						}
+					}
+				},
+
 			]
 		},
 		{
