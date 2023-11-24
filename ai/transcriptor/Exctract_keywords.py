@@ -21,7 +21,7 @@ model = SentenceTransformer('distiluse-base-multilingual-cased')
 # Инициализация KeyBERT с выбранной моделью
 kw_model = KeyBERT(model=model)
 
-def get_keywords(text, stopwords=None, top_n=10):
+def get_keywords(text, stopwords=None, keyphrase_ngram_range=(1, 1), top_n=10):
     '''
     На входе: текст (str), стоп-слова, топ n ключевых слов.
     На выходе: список из кортежей с ключевой фразой (словом) и его вес: [(str, float)]
@@ -29,10 +29,9 @@ def get_keywords(text, stopwords=None, top_n=10):
     Можно
     '''
     return kw_model.extract_keywords(text, stop_words=stopwords, keyphrase_ngram_range=keyphrase_ngram_range, top_n=top_n)
-
 def main():
     # Ваш текст
-    text = """"""
+    text = """Текст, который вы хотите выделить ключевыми фразами."""
     data = get_keywords(text, stopwords=combined_stop_words, keyphrase_ngram_range=(1, 1), top_n=10)
     print(data)
 
