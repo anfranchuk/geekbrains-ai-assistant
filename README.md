@@ -99,7 +99,7 @@ myproject/              # Корневая директория проекта
 ### Последовательные шаги для запуска кода:
 1. Склонируйте гит репозиторий;    
 ```Bash
-https://github.com/anfranchuk/geekbrains-ai-assistant.git
+git clone https://github.com/anfranchuk/geekbrains-ai-assistant.git
 ```
 
 ## <a name="stack">Стек 🛠️</a>
