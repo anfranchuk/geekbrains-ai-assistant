@@ -4,16 +4,18 @@ import TestPage from './pages/TestPage';
 // import InfoPage from './pages/InfoPage';
 // import SettingsPage from './pages/SettingsPage';
 import LeftMenu from './components/LeftMenu/LeftMenu';
+import SignInSide from './pages/SingIn';
+import AccountPage from './pages/AccountPage';
+import Header from './components/Header/Header';
 
 function App() {
 	return (
-		<div style={{height: '100vh', width: '100vw'}}>
+		<div>
 			<BrowserRouter>
-				<LeftMenu />
-
+				<Header/>
 				<Routes>
-					<Route path='/' element={<TestPage />} />
-					{/*<Route path='/info' element={<InfoPage />} />*/}
+					<Route path='/' element={<AccountPage />} />
+					<Route path='/singin' element={<SignInSide />} />
 					{/*<Route path='/settings' element={<SettingsPage />} />*/}
 					<Route path='*' element={<Navigate to='/' />} />
 					{/*<Route path='/tg' component={() => {*/}

@@ -21,7 +21,7 @@
         "react/prop-types": "off", 
         "react/display-name": "off",
         
-        "indent": ["error", "tab", {
+        "indent": ["warn", "tab", {
             "ignoredNodes": ["TemplateLiteral"]
         }],
         "linebreak-style": [
@@ -30,11 +30,11 @@
             // "windows"
         ],
         "quotes": [
-            "error",
+            "warn",
             "single"
         ],
         "semi": [
-            "error",
+            "warn",
             "always"
         ],
         "template-curly-spacing" : "off",
