@@ -7,6 +7,7 @@ import AutoFixHighIcon from '@mui/icons-material/AutoFixHigh';
 import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from "@mui/material/IconButton";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
+import {Download} from "@mui/icons-material";
 
 const columnsFull = [
 	{ field: 'id', headerName: 'ID', width: 50 },
@@ -100,15 +101,15 @@ export default () => {
 
 		return(
 			<div key={contentData.text} className={styles.oneText}>
-				{/*<button style={{marginLeft: '-178px', marginRight: 0}} onClick={() => handlePlayText(contentData.text)}>Воспроизвести</button>*/}
+				<button style={{marginLeft: '-178px', marginRight: 0}} onClick={() => handlePlayText(contentData.text)}>Воспроизвести</button>
 				<p style={{maxWidth: '500px', border: '1px solid black', padding: '10px', borderRadius: 5, margin: 10}}>{contentData.text}</p>
 				{/*<p style={{width: 30, display: 'inline-block'}}>{contentData.accuracy}%</p>*/}
-				{/*<IconButton style={{marginLeft: 10}} onClick={() => handleEdit(contentData)}>*/}
-				{/*	<AutoFixHighIcon sx={{color: 'black'}}/>*/}
-				{/*</IconButton>*/}
-				{/*<IconButton style={{background: 'red'}} onClick={() => handleDelete(contentData, index)}>*/}
-				{/*	<DeleteIcon sx={{color: 'white'}}/>*/}
-				{/*</IconButton>*/}
+				<IconButton style={{marginLeft: 10}} onClick={() => handleEdit(contentData)}>
+					<AutoFixHighIcon sx={{color: 'black'}}/>
+				</IconButton>
+				<IconButton style={{background: 'red'}} onClick={() => handleDelete(contentData, index)}>
+					<DeleteIcon sx={{color: 'white'}}/>
+				</IconButton>
 			</div>
 		);
 	};
@@ -120,9 +121,9 @@ export default () => {
 			<div key={contentData[0]} className={styles.oneText}>
 				<p>{contentData[0]}</p>
 				<p style={{maxWidth: '400px', border: '1px solid black', padding: '10px', borderRadius: 5, margin: 10}}>{contentData[1]}</p>
-				{/*<IconButton style={{background: 'red'}} onClick={() => handleDelete(contentData)}>*/}
-				{/*	<DeleteIcon sx={{color: 'white'}}/>*/}
-				{/*</IconButton>*/}
+				<IconButton style={{background: 'red'}} onClick={() => handleDelete(contentData)}>
+					<DeleteIcon sx={{color: 'white'}}/>
+				</IconButton>
 			</div>
 		)
 	};
@@ -290,6 +291,10 @@ export default () => {
 					/>
 				</div>
 			}
+
+			<IconButton>
+				{/*<DownloadIcon sx={{color: 'black'}}/>*/}
+			</IconButton>
 		</div>
 	);
 };
