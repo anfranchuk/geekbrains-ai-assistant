@@ -88,9 +88,10 @@ def sound_to_text(audio_file):
     text = conspect['text']
     termins = get_keywords(text, stopwords=combined_stop_words, keyphrase_ngram_range=(1, 1), top_n=200)
     # Remove similar words
+    """[('python', 0.4077), ('программирования', 0.31), ('разработчика', 0.2249)]"""
     termins = remove_similar_words(termins)
     print(termins)
-    """[('python', 0.4077), ('программирования', 0.31), ('разработчика', 0.2249)]"""
+
     out = []
     for x in termins:
         if len(x[0]) < 499:

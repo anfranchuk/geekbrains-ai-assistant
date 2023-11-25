@@ -116,3 +116,4 @@ git clone https://github.com/anfranchuk/geekbrains-ai-assistant.git
 ## <a name="urls">Ссылки 🔗</a>
  
 - [ссылка на яндекс диск]( https://disk.yandex.ru/)    
+- [ссылка на презентацию]( https://docs.google.com/presentation/d/1uTuyhbPNu8DNxG_jM-iX-6xLGPEeZ1Fa9h8CRDWS9Zk/edit?hl=ru#slide=id.g29ed4170a6d_0_131)    
