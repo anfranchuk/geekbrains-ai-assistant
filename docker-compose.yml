@@ -1,6 +1,17 @@
 version: "3.11"
 
 services:
+  pgdb:
+    image: postgres
+    restart: always
+    env_file:
+      - ./.env
+    environment:
+      - POSTGRES_USER=${DB_USERNAME}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+    volumes:
+      - ./pgdbdata:/var/lib/postgresql/data/
   redis:
     image: redis
     restart: always
@@ -14,10 +25,13 @@ services:
       - "8777:8777"
     volumes:
       - ./backend/core/media-api:/backend/core/media-api
-      - ./backend/core/rvn_db.sqlite3:/backend/core/rvn_db.sqlite3
+      - ./backend/core/db.sqlite3:/backend/core/db.sqlite3
     env_file:
-      - .env
-    command: bash -c "cd core && daphne -b 0.0.0.0 -p 8777 core.asgi:application -v2"
+      - ./.env
+    command: bash -c "cd core && python manage.py migrate && python manage.py createsu && daphne -b 0.0.0.0 -p 8777 core.asgi:application -v2"
+    depends_on:
+      - pgdb
+      - redis
 
   worker:
     restart: always
@@ -46,11 +60,10 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ./nginx.conf:/etc/nginx/nginx.conf
-      - ./django-static:/django-static
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./backend/core/django-static:/django-static
       - ./backend/core/media-api:/media-api
-      - ./build:/build
+      - ./frontend/build:/build
     depends_on:
       - backend
-volumes:
-  grafana-storage:
+
