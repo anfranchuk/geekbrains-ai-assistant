@@ -57,6 +57,7 @@
 backend/              # Весь backend
 ai/              # Модули аналитики
 ai/sound_to_text.py              # Основная аналитика
+frontend/              # Фронт
 
 ```
 
