@@ -106,9 +106,9 @@ export default () => {
 				{/*<IconButton style={{marginLeft: 10}} onClick={() => handleEdit(contentData)}>*/}
 				{/*	<AutoFixHighIcon sx={{color: 'black'}}/>*/}
 				{/*</IconButton>*/}
-				<IconButton style={{background: 'red'}} onClick={() => handleDelete(contentData, index)}>
-					<DeleteIcon sx={{color: 'white'}}/>
-				</IconButton>
+				{/*<IconButton style={{background: 'red'}} onClick={() => handleDelete(contentData, index)}>*/}
+				{/*	<DeleteIcon sx={{color: 'white'}}/>*/}
+				{/*</IconButton>*/}
 			</div>
 		);
 	};
@@ -120,9 +120,9 @@ export default () => {
 			<div key={contentData[0]} className={styles.oneText}>
 				<p>{contentData[0]}</p>
 				<p style={{maxWidth: '400px', border: '1px solid black', padding: '10px', borderRadius: 5, margin: 10}}>{contentData[1]}</p>
-				<IconButton style={{background: 'red'}} onClick={() => handleDelete(contentData)}>
-					<DeleteIcon sx={{color: 'white'}}/>
-				</IconButton>
+				{/*<IconButton style={{background: 'red'}} onClick={() => handleDelete(contentData)}>*/}
+				{/*	<DeleteIcon sx={{color: 'white'}}/>*/}
+				{/*</IconButton>*/}
 			</div>
 		)
 	};
@@ -238,8 +238,8 @@ export default () => {
 					console.log(content);
 
 					return (
-						<div style={{ height: '300px', width: '100%' }} key={`${content.title}-${content.id}`}>
-							<h3>{content.title}</h3>
+						<div style={{ height: '350px', width: '100%' }} key={`${content.title}-${content.id}`}>
+							<h3 style={{marginTop: 10}}>{content.title}</h3>
 							{id === 1
 								? content.data.map(contentData => oneGlos(contentData))
 								: id === 2
