@@ -14,6 +14,19 @@ import MoreIcon from '@mui/icons-material/MoreVert';
 import {useNavigate} from 'react-router-dom';
 import Typography from "@mui/material/Typography";
 
+const ITEM_HEIGHT = 48;
+
+const options = [
+	{
+		title: 'Загрузка лекции',
+		link: '/download',
+	},
+	{
+		title: 'Список лекций',
+		link: '/lecture',
+	},
+];
+
 export default function Header() {
 	const navigate = useNavigate();
 
@@ -52,18 +65,18 @@ export default function Header() {
 			open={isMobileMenuOpen}
 			onClose={handleMobileMenuClose}
 		>
-			<MenuItem>
-				<IconButton
-					size="large"
-					aria-label="show 17 new notifications"
-					color="inherit"
-				>
-					<Badge badgeContent={17} color="error">
-						<NotificationsIcon />
-					</Badge>
-				</IconButton>
-				<p>Notifications</p>
-			</MenuItem>
+			{/*<MenuItem>*/}
+			{/*	<IconButton*/}
+			{/*		size="large"*/}
+			{/*		aria-label="show 17 new notifications"*/}
+			{/*		color="inherit"*/}
+			{/*	>*/}
+			{/*		<Badge badgeContent={17} color="error">*/}
+			{/*			<NotificationsIcon />*/}
+			{/*		</Badge>*/}
+			{/*	</IconButton>*/}
+			{/*	<p>Notifications</p>*/}
+			{/*</MenuItem>*/}
 			<MenuItem onClick={handleProfileMenuOpen}>
 				<IconButton
 					size="large"
@@ -79,6 +92,15 @@ export default function Header() {
 		</Menu>
 	);
 
+	const [anchorEl, setAnchorEl] = React.useState(null);
+	const open = Boolean(anchorEl);
+	const handleClick = (event) => {
+		setAnchorEl(event.currentTarget);
+	};
+	const handleClose = () => {
+		setAnchorEl(null);
+	};
+
 	return (
 		<Box sx={{ flexGrow: 1 }}>
 			<AppBar position="static">
@@ -89,28 +111,52 @@ export default function Header() {
 						color="inherit"
 						aria-label="open drawer"
 						sx={{ mr: 2 }}
+						onClick={handleClick}
 					>
 						<MenuIcon />
 					</IconButton>
+
+					<Menu
+						id="long-menu"
+						MenuListProps={{
+							'aria-labelledby': 'long-button',
+						}}
+						anchorEl={anchorEl}
+						open={open}
+						onClose={handleClose}
+						PaperProps={{
+							style: {
+								maxHeight: ITEM_HEIGHT * 4.5,
+								width: '20ch',
+							},
+						}}
+					>
+						{options.map(({ title, link }) => (
+							<MenuItem key={title} onClick={() => {navigate(link); setAnchorEl(null);}}>
+								{title}
+							</MenuItem>
+						))}
+					</Menu>
+
 					<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
 						Интеллектуальный ассистент методиста
 					</Typography>
 					<Box sx={{ flexGrow: 1 }}/>
 					<Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-						<IconButton size="large" aria-label="show 4 new mails" color="inherit">
-							<Badge badgeContent={4} color="error">
-								<MailIcon />
-							</Badge>
-						</IconButton>
-						<IconButton
-							size="large"
-							aria-label="show 17 new notifications"
-							color="inherit"
-						>
-							<Badge badgeContent={17} color="error">
-								<NotificationsIcon />
-							</Badge>
-						</IconButton>
+						{/*<IconButton size="large" aria-label="show 4 new mails" color="inherit">*/}
+						{/*	<Badge badgeContent={4} color="error">*/}
+						{/*		<MailIcon />*/}
+						{/*	</Badge>*/}
+						{/*</IconButton>*/}
+						{/*<IconButton*/}
+						{/*	size="large"*/}
+						{/*	aria-label="show 17 new notifications"*/}
+						{/*	color="inherit"*/}
+						{/*>*/}
+						{/*	<Badge badgeContent={17} color="error">*/}
+						{/*		<NotificationsIcon />*/}
+						{/*	</Badge>*/}
+						{/*</IconButton>*/}
 						<IconButton
 							aria-haspopup="true"
 							onClick={handleProfileMenuOpen}
