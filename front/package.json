@@ -1,0 +1,62 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@emotion/react": "^11.11.0",
+    "@emotion/styled": "^11.11.0",
+    "@material-ui/core": "^4.11.3",
+    "@material-ui/icons": "^4.11.2",
+    "@mui/icons-material": "^5.10.9",
+    "@mui/material": "^5.10.10",
+    "@mui/x-data-grid": "^5.17.7",
+    "@testing-library/jest-dom": "^5.11.4",
+    "fontsource-roboto": "^4.0.0",
+    "mobx": "^6.3.2",
+    "mobx-persist-store": "^1.0.3",
+    "mobx-react": "^7.2.0",
+    "mobx-react-lite": "^3.2.0",
+    "moment": "^2.29.4",
+    "mui-forms": "^1.0.28",
+    "npm": "^7.24.2",
+    "react": "^17.0.2",
+    "react-color": "^2.19.3",
+    "react-contextmenu": "^2.14.0",
+    "react-dom": "^17.0.2",
+    "react-draggable": "^4.4.4",
+    "react-mic": "^12.4.6",
+    "react-player": "^2.11.0",
+    "react-router-dom": "^6.11.2",
+    "react-scripts": "4.0.2",
+    "styled-components": "^5.3.9",
+    "use-dark-mode": "^2.3.1",
+    "use-sound": "^4.0.1",
+    "web-vitals": "^1.1.2"
+  },
+  "scripts": {
+    "start": "react-scripts --openssl-legacy-provider start",
+    "build": "react-scripts --openssl-legacy-provider build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": [
+    ">0.2%",
+    "not dead",
+    "not op_mini all"
+  ],
+  "devDependencies": {
+    "eslint-plugin-react": "^7.31.11",
+    "sass": "^1.69.3"
+  },
+  "resolutions": {
+    "react-error-overlay": "6.0.9"
+  },
+  "main": "index.js",
+  "license": "MIT"
+}

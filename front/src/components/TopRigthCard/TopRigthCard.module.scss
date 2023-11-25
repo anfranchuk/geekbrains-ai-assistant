@@ -1,0 +1,59 @@
+.parent {
+  height: calc(100% - 40px);
+
+  padding: 20px;
+
+  color: #B1B5C5;
+
+  font-family: "Onest", sans-serif;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+}
+
+.header {
+  height: 80px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.searchInput {
+  height: 100%;
+  width: 27px;
+
+  margin: 1px;
+
+  border: none;
+
+  font-size: 40px;
+
+  background: inherit;
+  color: white;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+
+
+.bottomText {
+  font-size: 20px;
+}
+
+.center {
+  height: calc(100% - 160px);
+
+  //background: teal;
+}
+
+.bottom {
+  height: 80px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
