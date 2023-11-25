@@ -12,6 +12,7 @@ import MailIcon from '@mui/icons-material/Mail';
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import MoreIcon from '@mui/icons-material/MoreVert';
 import {useNavigate} from 'react-router-dom';
+import Typography from "@mui/material/Typography";
 
 export default function Header() {
 	const navigate = useNavigate();
@@ -47,6 +48,7 @@ export default function Header() {
 				vertical: 'top',
 				horizontal: 'right',
 			}}
+			position={'fixed'}
 			open={isMobileMenuOpen}
 			onClose={handleMobileMenuClose}
 		>
@@ -90,7 +92,10 @@ export default function Header() {
 					>
 						<MenuIcon />
 					</IconButton>
-					<Box sx={{ flexGrow: 1 }} />
+					<Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
+						Интеллектуальный ассистент методиста
+					</Typography>
+					<Box sx={{ flexGrow: 1 }}/>
 					<Box sx={{ display: { xs: 'none', md: 'flex' } }}>
 						<IconButton size="large" aria-label="show 4 new mails" color="inherit">
 							<Badge badgeContent={4} color="error">

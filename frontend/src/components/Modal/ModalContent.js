@@ -5,29 +5,37 @@ import CardActions from '@mui/material/CardActions';
 import Button from '@mui/material/Button';
 import Typography from '@mui/material/Typography';
 
-export default function MyCard({ handleClose = () => {} }) {
+export default function MyCard({ setOpenModal }) {
+
+	const handleClick = () => {
+		// Выполните необходимую логику перед закрытием модального окна
+		// ...
+
+		// Затем вызовите функцию handleClose для закрытия модального окна
+	};
+
 	return (
 		<Card>
 			<CardContent>
-				<Typography variant="h5" component="div">
+				<Typography variant="h5" component="div" style={{marginBottom: 10}}>
                     Предупреждение
 				</Typography>
 				<Typography variant="body2" color="text.secondary" component="div">
                     Вы не приложили методички, из-за чего часть аналитики не будет работать. Отправить без методички?
 				</Typography>
 			</CardContent>
-			<CardActions>
+			<CardActions style={{display: 'flex', justifyContent: 'center', gap: 20, marginBottom: 15}}>
 				<Button
 					variant="contained"
 					color="grey"
-					onClick={handleClose}
+					onClick={() => setOpenModal(false)}
 				>
                     Отправить
 				</Button>
 				<Button
 					variant="contained"
 					color="warning"
-					onClick={handleClose}
+					onClick={() => setOpenModal(false)}
 				>
                     Отмена
 				</Button>
