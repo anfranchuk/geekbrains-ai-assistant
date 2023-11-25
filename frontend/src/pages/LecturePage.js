@@ -47,8 +47,13 @@ export default () => {
 		// Логика для редактирования секции
 	};
 
-	const handleDelete = (section) => {
-		// Логика для удаления секции
+	const handleDelete = (section, index) => {
+		if (selectedLecture === null) return;
+		console.log(section, index);
+		// dataEvents[selectedLecture].summary.splice(index, 1);
+		console.log(dataEvents[selectedLecture].summary[index]);
+
+		dataEvents[selectedLecture].summary.splice(index, 1)
 	};
 
 	const handleDoubleClick = (id) => {
@@ -90,29 +95,37 @@ export default () => {
 
 	console.log(selectedLecture);
 
-	const oneText = (contentData) => (
-		<div key={contentData.text} className={styles.oneText}>
-			<button style={{marginLeft: '-178px', marginRight: 0}} onClick={() => handlePlayText(contentData.text)}>Воспроизвести</button>
-			<p style={{maxWidth: '500px', border: '1px solid black', padding: '10px', borderRadius: 5, margin: 10}}>{contentData.text}</p>
-			<p style={{width: 30, display: 'inline-block'}}>{contentData.accuracy}%</p>
-			<IconButton style={{marginLeft: 10}} onClick={() => handleEdit(contentData)}>
-				<AutoFixHighIcon sx={{color: 'black'}}/>
-			</IconButton>
-			<IconButton style={{background: 'red'}} onClick={() => handleDelete(contentData)}>
-				<DeleteIcon sx={{color: 'white'}}/>
-			</IconButton>
-		</div>
-	);
+	const oneText = (contentData, index) => {
+		console.log(contentData);
 
-	const oneGlos = (contentData) => (
-		<div key={contentData.text} className={styles.oneText}>
-			<p>{contentData.term}</p>
-			<p style={{maxWidth: '400px', border: '1px solid black', padding: '10px', borderRadius: 5, margin: 10}}>{contentData.text}</p>
-			<IconButton style={{background: 'red'}} onClick={() => handleDelete(contentData)}>
-				<DeleteIcon sx={{color: 'white'}}/>
-			</IconButton>
-		</div>
-	);
+		return(
+			<div key={contentData.text} className={styles.oneText}>
+				{/*<button style={{marginLeft: '-178px', marginRight: 0}} onClick={() => handlePlayText(contentData.text)}>Воспроизвести</button>*/}
+				<p style={{maxWidth: '500px', border: '1px solid black', padding: '10px', borderRadius: 5, margin: 10}}>{contentData.text}</p>
+				{/*<p style={{width: 30, display: 'inline-block'}}>{contentData.accuracy}%</p>*/}
+				{/*<IconButton style={{marginLeft: 10}} onClick={() => handleEdit(contentData)}>*/}
+				{/*	<AutoFixHighIcon sx={{color: 'black'}}/>*/}
+				{/*</IconButton>*/}
+				<IconButton style={{background: 'red'}} onClick={() => handleDelete(contentData, index)}>
+					<DeleteIcon sx={{color: 'white'}}/>
+				</IconButton>
+			</div>
+		);
+	};
+
+	const oneGlos = (contentData) => {
+		console.log(contentData);
+
+		return (
+			<div key={contentData[0]} className={styles.oneText}>
+				<p>{contentData[0]}</p>
+				<p style={{maxWidth: '400px', border: '1px solid black', padding: '10px', borderRadius: 5, margin: 10}}>{contentData[1]}</p>
+				<IconButton style={{background: 'red'}} onClick={() => handleDelete(contentData)}>
+					<DeleteIcon sx={{color: 'white'}}/>
+				</IconButton>
+			</div>
+		)
+	};
 
 	const selectLecture = (id) => {
 		const selectedLectureData = dataEvents.find(lecture => lecture.id === id);
@@ -222,6 +235,8 @@ export default () => {
 				{contentData.map(content => {
 					const {id, data} = content;
 
+					console.log(content);
+
 					return (
 						<div style={{ height: '300px', width: '100%' }} key={`${content.title}-${content.id}`}>
 							<h3>{content.title}</h3>
@@ -229,7 +244,12 @@ export default () => {
 								? content.data.map(contentData => oneGlos(contentData))
 								: id === 2
 									? <DataGrid sx={{width: 500}} rows={data} columns={columns} pageSize={5} />
-									: content.data.map(contentData => oneText(contentData))}
+									: content.data.map((contentData, index) => {
+										if (contentData.t === 'conspect') {
+											return oneText(contentData, index);
+										}
+									})
+							}
 						</div>
 					);
 				})}

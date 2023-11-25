@@ -6,7 +6,7 @@ import TopRigthCard from '../components/TopRigthCard/TopRigthCard';
 import TopLeftCard from '../components/TopLeftCard/TopLeftCard';
 // import BottomRightCard from '../components/BottomRigthCard/BottomRigthCard';
 import styles from './TestPage.module.scss';
-import {apiMainGet} from '../api/api';
+import {apiMainGet, apiPost} from '../api/api';
 import { ReactMic } from 'react-mic';
 import Modal from '@mui/material/Modal';
 import Box from '@mui/material/Box';
@@ -80,18 +80,17 @@ export default () => {
 
 	const handleClose = () => setOpen(false);
 
-	const serverPath = '77.223.96.53';
+	const path = 'ai-med-help.ru';
 	// const localPath = window.location.host;
 
-	const getLink = `http://${serverPath}/api/v1/events/`;
-	// const getLink = `http://${localPath}/api/v1/events/`;
+	const postLink = `http://${path}/api/v1/lectures/`;
 
-	useEffect(() => {
-		getEvents(getLink);
-
-		setIsLoad(true);
-		setReloadPage(false);
-	}, [reloadPage]);
+	// useEffect(() => {
+	// 	getEvents(getLink);
+	//
+	// 	setIsLoad(true);
+	// 	// setReloadPage(false);
+	// }, [reloadPage]);
 
 	const getEvents = (url = '') => {
 		apiMainGet(url).then(({ data, error }) => {
@@ -235,7 +234,7 @@ export default () => {
 
 
 	const [lectureName, setLectureName] = useState('');
-	const [lecturer, setLecturer] = useState('');
+	const [lecturer, setLecturer] = useState('test@test.ru');
 	const [audioFile, setAudioFile] = useState(null);
 	const [videoFile, setVideoFile] = useState(null);
 	const [recordedAudio, setRecordedAudio] = useState(null);
@@ -271,19 +270,37 @@ export default () => {
 		e.preventDefault();
 
 		// Отправка данных на бэкенд
-		const formData = new FormData();
-		formData.append('lectureName', lectureName);
-		formData.append('lecturer', lecturer);
+		const formDataAudio = new FormData();
+		const formDataVideo = new FormData();
 		if (audioFile) {
-			formData.append('audioFile', audioFile);
+			formDataAudio.append('audiofile', audioFile);
 		}
 		if (videoFile) {
-			formData.append('videoFile', videoFile);
+			formDataVideo.append('videoFile', videoFile);
 		}
 		if (recordedAudio) {
-			formData.append('recordedAudio', recordedAudio);
+			formDataAudio.append('audioFile', recordedAudio);
 		}
-		formData.append('uploadWordFile', uploadWordFile);
+		// formData.append('uploadWordFile', uploadWordFile);
+
+		console.log(audioFile);
+		const data = {
+			lecturer: lecturer,
+			name: lectureName,
+			audiofile: formDataAudio,
+			// audiofile: audioFile,
+			videoFile: formDataVideo,
+		}
+
+		// fetch('postLink', {
+		// 	method: 'POST',
+		// 	body: formData,
+		// })
+		// 	.then(response => response.json())
+		// 	.then(data => console.log(data))
+		// 	.catch((error) => console.error('Error:', error));
+
+		apiPost(postLink, data);
 
 		// Отправка formData на бэкенд...
 	};
@@ -381,7 +398,7 @@ export default () => {
 			{/*		/!*	onRowClick={handleSelectRow}*!/*/}
 			{/*		/!*	onPaginationModelChange={handleChangePage}*!/*/}
 			{/*		/!*	localeText={ruRU.components.MuiDataGrid.defaultProps.localeText}*!/*/}
-					{/*/>*/}
+			{/*/>*/}
 			{/*		/!*	</div>*!/*/}
 			{/*	</div>*/}
 
@@ -425,7 +442,7 @@ export default () => {
 				<form onSubmit={handleSubmit}>
 					<label>Информация:</label>
 
-					<div className={styles.field} style={{ display: 'flex', gap: '10px' }}>
+					<div className={styles.field} style={{ display: 'flex', gap: '10px', marginTop: '10px' }}>
 						<TextField
 							label="Название лекции"
 							variant="outlined"
@@ -440,8 +457,10 @@ export default () => {
 							variant="outlined"
 							size={'small'}
 							type="text"
-							value={lecturer}
-							onChange={handleLecturerChange}
+							defaultValue='test@test.ru'
+							InputProps={{
+								readOnly: true,
+							}}
 						/>
 					</div>
 					<div className={styles.field}>
@@ -490,35 +509,35 @@ export default () => {
 							/>
 							Записать лекцию
 						</label>
-							<div className={styles.ReactMic}>
-								<ReactMic
-									record={recordStart}
-									onStop={handleStop}
-									onData={handleData}
-									strokeColor="#1976d2"
-									backgroundColor="white"
-								/>
-								<div>
-									<button
-										onClick={handleStart}
-										disabled={selectedFileType !== "record"}
-									>
-										Начать запись
-									</button>
-									<button
-										onClick={handleStop}
-										disabled={selectedFileType !== "record"}
-									>
-										Остановить запись
-									</button>
-								</div>
-
-								{recordedData && (
-									<div>
-										<audio controls src={URL.createObjectURL(recordedData)} />
-									</div>
-								)}
+						<div className={styles.ReactMic}>
+							<ReactMic
+								record={recordStart}
+								onStop={handleStop}
+								onData={handleData}
+								strokeColor="#1976d2"
+								backgroundColor="white"
+							/>
+							<div>
+								<button
+									onClick={handleStart}
+									disabled={selectedFileType !== "record"}
+								>
+									Начать запись
+								</button>
+								<button
+									onClick={handleStop}
+									disabled={selectedFileType !== "record"}
+								>
+									Остановить запись
+								</button>
 							</div>
+
+							{recordedData && (
+								<div>
+									<audio controls src={URL.createObjectURL(recordedData)} />
+								</div>
+							)}
+						</div>
 					</div>
 					<div className={styles.field}>
 						<label htmlFor="uploadWordFile">Методичка:</label>
@@ -537,30 +556,30 @@ export default () => {
 						/>
 					</div>
 					<div style={{width: '100%', display: 'flex', justifyContent: 'center'}}>
-						<button type="submit" disabled={(lecturer === '' || lectureName === '') || (recordedAudio  === null && videoFile === null && audioFile === null)}>Отправить</button>
+						<button type="submit" disabled={(lectureName === '') || (recordedAudio  === null && videoFile === null && audioFile === null)}>Отправить</button>
 					</div>
 				</form>
 			</div>
 
-				<Modal
-					open={openModal}
-					onClose={handleClose}
+			<Modal
+				open={openModal}
+				onClose={handleClose}
+			>
+				<Box
+					sx={{
+						position: 'absolute',
+						top: '50%',
+						left: '50%',
+						transform: 'translate(-50%, -50%)',
+						display: 'flex',
+						justifyContent: 'center',
+						margin: '50px 20px 0 20px', // Add a 20px margin on the right and left
+					}}
 				>
-					<Box
-						sx={{
-							position: 'absolute',
-							top: '50%',
-							left: '50%',
-							transform: 'translate(-50%, -50%)',
-							display: 'flex',
-							justifyContent: 'center',
-							margin: '50px 20px 0 20px', // Add a 20px margin on the right and left
-						}}
-					>
-						<MyCard setOpenModal={setOpenModal}/>
-					</Box>
+					<MyCard setOpenModal={setOpenModal}/>
+				</Box>
 
-				</Modal>
+			</Modal>
 		</div>
 	);
 };
