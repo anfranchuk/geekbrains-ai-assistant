@@ -8,6 +8,7 @@ import DeleteIcon from '@mui/icons-material/Delete';
 import IconButton from "@mui/material/IconButton";
 import ArrowBackIosNewIcon from '@mui/icons-material/ArrowBackIosNew';
 import {Download} from "@mui/icons-material";
+import DownloadIcon from '@mui/icons-material/Download';
 
 const columnsFull = [
 	{ field: 'id', headerName: 'ID', width: 50 },
@@ -254,6 +255,10 @@ export default () => {
 						</div>
 					);
 				})}
+
+				<IconButton>
+					<DownloadIcon sx={{color: 'black'}}/>
+				</IconButton>
 			</div>
 		);
 	};
@@ -291,10 +296,6 @@ export default () => {
 					/>
 				</div>
 			}
-
-			<IconButton>
-				{/*<DownloadIcon sx={{color: 'black'}}/>*/}
-			</IconButton>
 		</div>
 	);
 };
