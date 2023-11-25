@@ -153,3 +153,5 @@ CELERY_BROKER_URL = "redis://redis:6379" # redis -> dns name in docker-compose
 CELERY_TIMEZONE = "Europe/Moscow"
 CELERY_TASK_TRACK_STARTED = True
 CELERY_TASK_TIME_LIMIT = 30 * 60
+
+AUTH_USER_MODEL = 'accounts.User'
