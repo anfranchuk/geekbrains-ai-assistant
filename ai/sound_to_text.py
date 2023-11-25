@@ -86,7 +86,7 @@ def sound_to_text(audio_file):
     """
     print(conspect)
     text = conspect['text']
-    termins = get_keywords(text, stopwords=combined_stop_words, keyphrase_ngram_range=(1, 1), top_n=25)
+    termins = get_keywords(text, stopwords=combined_stop_words, keyphrase_ngram_range=(1, 1), top_n=200)
     # Remove similar words
     termins = remove_similar_words(termins)
     print(termins)
@@ -100,4 +100,4 @@ def sound_to_text(audio_file):
     print(out)
     return out, conspect, termins
 
-#sound_to_text('./audio1.mp3')
+sound_to_text('./audio1.mp3')
