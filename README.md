@@ -70,7 +70,7 @@ ai/sound_to_text.py              # Основная аналитика
 Таким образом, наш интеллектуальный ассистент не только упрощает процесс подготовки материалов для лекций, но и делает эти материалы более доступными для студентов.
 
 ### Пример решения
-<img width="100" height="50" alt="func_scheme" src="https://github.com/anfranchuk/geekbrains-ai-assistant/blob/main/staticfiles/sol.jpg"> 
+<img width="400" height="200" alt="func_scheme" src="https://github.com/anfranchuk/geekbrains-ai-assistant/blob/main/staticfiles/sol.jpg"> 
 
 
 
