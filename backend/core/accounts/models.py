@@ -40,7 +40,7 @@ class User(AbstractUser):
     email = models.EmailField(verbose_name='email address', max_length=255, unique=True)
     image = models.ImageField(upload_to='profiles/', blank=True, null=True)
     phone = models.CharField(max_length=32, blank=True, default='')
-    grouprole = models.CharField(max_length=15, choices=ROLE_CHOICES, default='groupuser', null=False)
+    grouprole = models.CharField(max_length=15, choices=ROLE_CHOICES, default='Лектор', null=False)
 
     username = None
 

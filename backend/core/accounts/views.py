@@ -67,3 +67,15 @@ class UserProfileView(APIView):
         user = request.user        
         user_serializer = accounts_serializers.UserProfileSerializer(user, many=False, context={"request": request})
         return Response(user_serializer.data, status=status.HTTP_200_OK)
+    
+
+    
+class LectorListView(APIView):
+    permission_classes = [AllowAny]
+    @swagger_auto_schema(responses={201: accounts_serializers.UserProfileSerializer(many=True)})
+    def get(self, request, *args, **kwargs):
+        users = User.objects.filter(grouprole="Лектор").values_list('email', flat=True)
+        return Response(users, status=status.HTTP_200_OK)
+    
+
+    
