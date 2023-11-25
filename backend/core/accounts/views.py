@@ -6,13 +6,13 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.authtoken.views import ObtainAuthToken
 from rest_framework.authtoken.models import Token
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, AllowAny
 from drf_yasg.utils import swagger_auto_schema
 from drf_yasg import openapi
 
 
 class UserRegistrationView(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
     serializer_class = accounts_serializers.UserSerializer
     @swagger_auto_schema(
                         request_body=accounts_serializers.UserSerializer,
@@ -30,6 +30,7 @@ class UserRegistrationView(APIView):
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 class UserLoginView(ObtainAuthToken):
+    permission_classes = [AllowAny]
     @swagger_auto_schema(method='post')
     def post(self, request, *args, **kwargs):
         email = request.data.get('email')
@@ -50,7 +51,7 @@ class UserLoginView(ObtainAuthToken):
             return Response({'message': 'Invalid email or password'}, status=status.HTTP_401_UNAUTHORIZED)
 
 class UserLogoutView(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
     @swagger_auto_schema(method='post')
     def post(self, request, *args, **kwargs):
         token_key = request.auth.key
@@ -60,7 +61,7 @@ class UserLogoutView(APIView):
 
 
 class UserProfileView(APIView):
-    permission_classes = [IsAuthenticated]
+    permission_classes = [AllowAny]
     @swagger_auto_schema(responses={201: accounts_serializers.UserProfileSerializer(many=False)})
     def get(self, request, *args, **kwargs):
         user = request.user        

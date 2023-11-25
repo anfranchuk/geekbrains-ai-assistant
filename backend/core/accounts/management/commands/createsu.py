@@ -10,4 +10,4 @@ class Command(BaseCommand):
                                             first_name = "Добрыня",
                                             last_name = "Никитич",
                                             password="admin",
-                                            role = 'Методист')
+                                            grouprole = 'Методист')
